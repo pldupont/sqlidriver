@@ -1,0 +1,50 @@
+<datasources>
+    <xa-datasource>
+        <jndi-name>MySQLXADS</jndi-name>
+        <track-connection-by-tx/>
+        <isSameRM-override-value>false</isSameRM-override-value>
+        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+        <xa-datasource-property name="URL">jdbc:mysql://localhost:3306/sqliDriver</xa-datasource-property>
+        <xa-datasource-property name="User">sqli</xa-datasource-property>
+        <xa-datasource-property name="Password">sqli</xa-datasource-property>
+		<!-- <track-connection-by-tx>true</track-connection-by-tx> -->
+		<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</exception-sorter-class-name>
+    	<valid-connection-checker-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLValidConnectionChecker</valid-connection-checker-class-name>
+		<min-pool-size>1</min-pool-size>
+		<max-pool-size>10</max-pool-size>
+		<idle-timeout-minutes>10</idle-timeout-minutes>
+		<metadata>
+			<type-mapping>mySQL</type-mapping>
+		</metadata>
+    </xa-datasource>
+    <local-tx-datasource>
+        <jndi-name>MySQLLocalDS</jndi-name>
+        <connection-url>jdbc:mysql://localhost:3306/sqliDriver</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>sqli</user-name>
+        <password>sqli</password>
+		<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</exception-sorter-class-name>
+    	<valid-connection-checker-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLValidConnectionChecker</valid-connection-checker-class-name>
+		<min-pool-size>1</min-pool-size>
+		<max-pool-size>10</max-pool-size>
+		<idle-timeout-minutes>10</idle-timeout-minutes>
+		<metadata>
+			<type-mapping>mySQL</type-mapping>
+		</metadata>
+    </local-tx-datasource>
+    <local-tx-datasource>
+        <jndi-name>SQLIAnalyzerLocalDS</jndi-name>
+        <connection-url>jdbc:sqli://localhost:3306/sqliDriver</connection-url>
+        <driver-class>com.pld.sqli.driver.AnalyzerDriver</driver-class>
+        <user-name>sqli</user-name>
+        <password>sqli</password>
+		<exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter</exception-sorter-class-name>
+    	<!--><valid-connection-checker-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLValidConnectionChecker</valid-connection-checker-class-name>-->
+		<min-pool-size>1</min-pool-size>
+		<max-pool-size>10</max-pool-size>
+		<idle-timeout-minutes>10</idle-timeout-minutes>
+		<metadata>
+			<type-mapping>mySQL</type-mapping>
+		</metadata>
+    </local-tx-datasource>
+</datasources>

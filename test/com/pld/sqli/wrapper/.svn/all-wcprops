@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/UdSProjects/!svn/ver/29/sqlidriver/test/com/pld/sqli/wrapper
+END
+CallableStatementWrapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/UdSProjects/!svn/ver/29/sqlidriver/test/com/pld/sqli/wrapper/CallableStatementWrapperTest.java
+END
+ConnectionWrapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/UdSProjects/!svn/ver/29/sqlidriver/test/com/pld/sqli/wrapper/ConnectionWrapperTest.java
+END
+StatementWrapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/UdSProjects/!svn/ver/14/sqlidriver/test/com/pld/sqli/wrapper/StatementWrapperTest.java
+END
+PreparedStatementWrapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/UdSProjects/!svn/ver/29/sqlidriver/test/com/pld/sqli/wrapper/PreparedStatementWrapperTest.java
+END

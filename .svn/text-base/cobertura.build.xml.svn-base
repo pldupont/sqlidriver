@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CoberturaBuild" default="default" basedir="." xmlns:ejbjarproject="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
+    <description>Common targets for Building, Testing and running Report Coverage on a project.</description>
+    <path id="cobertura.classpath">
+        <fileset dir="${basedir}/lib/Cobertura/">
+            <include name="cobertura.jar" />
+            <include name="lib/**/*.jar" />
+        </fileset>
+    </path>
+
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
+
+    <target name="delete-old-coverage-report" depends="init, compile-test">
+        <echo message="Deleting old cobertura report" />
+        <delete dir="${build.dir}/cobertura-report" />
+    </target>
+
+    <target name="delete-instrumented-classes" depends="init, compile-test" unless="deleted.instrumented.classes">
+        <echo message="Deleting all instrumented classes" />
+        <property name="deleted.instrumented.classes" value="true" />
+        <delete dir="${build.dir}/test/cobertura-instrumented-classes" />
+    </target>
+
+    <target name="cobertura-instrument" depends="init,compile-test,-pre-test-run,delete-instrumented-classes" unless="cobertura.instrumented">
+        <echo message="Creating instrumented classes" />
+        <property name="cobertura.instrumented" value="true" />
+		<cobertura-instrument todir="${build.dir}/test/cobertura-instrumented-classes">
+            <fileset dir="${build.classes.dir}">
+                <include name="**/*.class"/>
+                <exclude name="com/pld/sqli/demo/**/*.class"/>
+            </fileset>
+        </cobertura-instrument>
+    </target>
+
+    <target name="init-cobertura-srcdir" if="cobertura-use-project-name" unless="initialized.cobertura.srcdir">
+        <echo>Use project-name</echo>
+        <property name="initialized.cobertura.srcdir" value="true" />
+        <property name="cobertura-srcdir" value="${ant.project.name}/${src.dir}"/>
+    </target>
+
+    <target name="cobertura-coverage-report" depends="init,compile-test,delete-instrumented-classes,cobertura-instrument,delete-old-coverage-report,init-cobertura-srcdir">
+        <property name="cobertura-srcdir" value="${src.dir}"/>
+        <property name="cobertura-output-format" value="html"/>
+        <cobertura-report srcdir="${cobertura-srcdir}" destdir="${basedir}/cobertura-report" format="${cobertura-output-format}"/>
+        <delete file="Serialized" failonerror="false"/>
+        <delete file="cobertura.ser" failonerror="false"/>
+    </target>
+</project>
